@@ -51,8 +51,8 @@ const apiLogoutEndpoint = '';
  * - Se vazio, não faz nada
  */
 // const redirectOnLogout = 'index.html'
-// const redirectOnLogout = '/'
-const redirectOnLogout = ''
+// const redirectOnLogout = ''
+const redirectOnLogout = '/'
 
 /**
  * Configuração: mostra logs das ações no console
