@@ -9,6 +9,6 @@ privacy_bp = Blueprint("privacy", __name__)
 def about_page():
     return render_template("about.html")
 
-@privacy_bp.route("/privacy_bp")
+@privacy_bp.route("/privacy")
 def privacy_page():
-    return render_template("privacy_bp.html")
+    return render_template("privacy.html")
