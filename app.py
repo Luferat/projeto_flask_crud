@@ -3,6 +3,7 @@
 from flask import Flask
 from config import APP
 
+from initdb import init_db
 from pages.home import home_bp
 from pages.about import info_bp
 from pages.contacts import contacts_bp
@@ -11,6 +12,8 @@ from pages.newpad import newpad_bp
 from pages.search import search_bp
 
 app = Flask(__name__)
+
+init_db()
 
 
 @app.context_processor

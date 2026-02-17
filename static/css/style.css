@@ -12,6 +12,11 @@ select {
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    background-image: url('/static/img/bg01.png');
+    background-attachment: fixed;
+}
+
 a {
     text-decoration: none;
     color: steelblue;
