@@ -1,7 +1,7 @@
 # app.py
 
 from flask import Flask
-from config import *
+from config import APP
 
 from pages.home import home_bp
 from pages.about import info_bp
