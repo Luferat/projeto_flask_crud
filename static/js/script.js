@@ -10,8 +10,8 @@
  *  - Se vazio (''), faz logout do usuário
  *  - Se tem uma URL (Ex.: '/profile'), acessa
  */
-const loggedUserAction = '';
-// const loggedUserAction = '/profile';
+// const loggedUserAction = '';
+const loggedUserAction = '/owner/profile';
 
 /**
  * Configuração: ID do elemento que contém o avatar do usuário.
