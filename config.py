@@ -28,8 +28,8 @@ COOKIE = {
 MAIL = {
     "server": "smtp.gmail.com",
     "port": 587,
-    "username": "catabits@gmail.com",
-    "admin_email": "catabits@gmail.com",
+    "username": "seuemail@gmail.com",
+    "admin_email": "seuemail@gmail.com",
     # Acesse https://myaccount.google.com/apppasswords para gerar a senha de aplicativo abaixo
-    "password": "vqcr sohw gkhm mtao",
+    "password": "senha de aplicativo aqui",
 }
