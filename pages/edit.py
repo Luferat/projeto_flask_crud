@@ -61,4 +61,4 @@ def edit_page(pad_id):
             "title": "Editar Pad",
         }
 
-        return render_template("edit.html", form=form)
+        return render_template("padform.html", form=form)

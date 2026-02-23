@@ -1,4 +1,8 @@
-{# templates\_form.html #}
+{# templates/padform.html #}
+
+{% extends "_base.html" %}
+
+{% block content %}
 
 <form method="post" action="{{ form.action }}" class="d-flex flex-column flex-grow-1">
 
@@ -20,3 +24,5 @@
     </div>
 
 </form>
+
+{% endblock %}
