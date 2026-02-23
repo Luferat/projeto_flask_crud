@@ -1,5 +1,4 @@
-# blueprints\search.py
-# Página de pesquisa
+# pages\search.py
 
 import html
 import sqlite3
