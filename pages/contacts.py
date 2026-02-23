@@ -4,6 +4,7 @@ import sqlite3
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from config import DB
 from utils.auth import get_user_by_uid
+from utils.mail import send_contact_email
 
 contacts_bp = Blueprint('contacts', __name__)
 
@@ -11,26 +12,12 @@ contacts_bp = Blueprint('contacts', __name__)
 @contacts_bp.route("/contacts", methods=["GET", "POST"])
 def contacts_page():
 
-    user_uid = request.cookies.get('owner_uid')
-    userdata = dict(get_user_by_uid(user_uid))
+    user_uid = request.cookies.get("owner_uid")
+    user = get_user_by_uid(user_uid)
+    userdata = dict(user) if user else None
 
-    conn = sqlite3.connect(DB['name'])
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-
-    if not userdata:
-        own_name = ""
-        own_email = ""
-    else:
-        own_name = userdata['own_display_name']
-        own_email = userdata['own_email']
-
-    form = {
-        "name": own_name,
-        "email": own_email,
-        "subject": "",
-        "message": ""
-    }
+    own_name = userdata["own_display_name"] if userdata else ""
+    own_email = userdata["own_email"] if userdata else ""
 
     if request.method == "POST":
 
@@ -41,25 +28,44 @@ def contacts_page():
             "message": request.form.get("message", "").strip(),
         }
 
-        cursor.execute(
-            "INSERT INTO contacts ( cnt_name, cnt_email, cnt_subject, cnt_message ) VALUES ( ?, ?, ?, ? )",
-            (form["name"], form["email"], form["subject"], form["message"],)
-        )
-
-        conn.commit()
-        conn.close()
+        with sqlite3.connect(DB["name"]) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT INTO contacts 
+                (cnt_name, cnt_email, cnt_subject, cnt_message)
+                VALUES (?, ?, ?, ?)
+            """, (
+                form["name"],
+                form["email"],
+                form["subject"],
+                form["message"],
+            ))
+            conn.commit()
 
         if cursor.rowcount == 1:
-            form = {
-                "name": own_name,
-                "email": own_email,
-                "subject": "",
-                "message": ""
-            }
+            try:
+                send_contact_email(
+                    form["name"],
+                    form["email"],
+                    form["subject"],
+                    form["message"]
+                )
+            except Exception as e:
+                print("Erro ao enviar email:", e)
+
             flash("Contato enviado com sucesso!", "success")
         else:
-            flash(
-                "Oooops! Não foi possível enviar o contato. Tente novamente...", "danger")
+            flash("Oooops! Não foi possível enviar o contato.", "danger")
+
+        return redirect(url_for("contacts.contacts_page"))
+
+    # GET
+    form = {
+        "name": own_name,
+        "email": own_email,
+        "subject": "",
+        "message": ""
+    }
 
     return render_template(
         "contacts.html",

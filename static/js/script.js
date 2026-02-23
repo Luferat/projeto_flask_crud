@@ -411,3 +411,10 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 })
+
+// Bloqueia reenvio de formulário ao recarregar a página
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href)
+  }
+})
