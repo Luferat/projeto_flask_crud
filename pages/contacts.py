@@ -2,7 +2,7 @@
 
 import sqlite3
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from config import DB
+from config import DB, MAIL
 from utils.auth import get_user_by_uid
 from utils.mail import send_contact_email
 
@@ -43,15 +43,17 @@ def contacts_page():
             conn.commit()
 
         if cursor.rowcount == 1:
-            try:
-                send_contact_email(
-                    form["name"],
-                    form["email"],
-                    form["subject"],
-                    form["message"]
-                )
-            except Exception as e:
-                print("Erro ao enviar email:", e)
+
+            if MAIL['send_contact']:
+                try:
+                    send_contact_email(
+                        form["name"],
+                        form["email"],
+                        form["subject"],
+                        form["message"]
+                    )
+                except Exception as e:
+                    print("Erro ao enviar email:", e)
 
             flash("Contato enviado com sucesso!", "success")
         else:

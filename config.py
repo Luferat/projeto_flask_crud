@@ -26,6 +26,7 @@ COOKIE = {
 
 # Configurações do e-mail
 MAIL = {
+    "send_contact": False,
     "server": "smtp.gmail.com",
     "port": 587,
     "username": "seuemail@gmail.com",
