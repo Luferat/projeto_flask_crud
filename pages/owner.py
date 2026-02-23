@@ -114,9 +114,23 @@ def owner_profile():
 
     userdata = dict(g.current_user)
     page_title = f"Perfil de {userdata.get('own_display_name', 'Usuário')}"
+    user_uid = userdata.get('own_uid', None)
+
+    with sqlite3.connect(DB["name"]) as conn:
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT pad_id, pad_title FROM pads WHERE pad_owner = ? AND pad_status = 'ON'",
+            (user_uid,)
+        )
+
+        rows = cursor.fetchall()
+        all_pads = [dict(row) for row in rows]
 
     return render_template(
         "profile.html",
         page_title=page_title,
-        userdata=userdata
+        userdata=userdata,
+        all_pads=all_pads,
     )
