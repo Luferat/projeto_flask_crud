@@ -1,17 +1,17 @@
 # pages/_modelbp.py
 # Blueprint modelo
 # As setas apontam os dados que precisam ser modificados
-# Dica: localize a expressão "home" e troque pelo nome da blueprint / página
+# Dica: localize a expressão "modelbp" e troque pelo nome da blueprint / página
 
 from flask import Blueprint, render_template
 
 # ↓                   ↓
-home_bp = Blueprint("home", __name__)
+modelbp_bp = Blueprint("modelbp", __name__)
 
 #  ↓               ↓
-@home_bp.route("/home")
-def home_page(): # ←
-    # Lógica da home entra aqui
+@modelbp_bp.route("/modelbp")
+def modelbp_page(): # ←
+    # Lógica da modelbp entra aqui
 
     #                        ↓
-    return render_template("home.html")
+    return render_template("modelbp.html")
