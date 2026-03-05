@@ -1,17 +1,18 @@
 # app.py
 
 from flask import Flask
-
-# Importa a constante `APP` de `config.py`
 from config import APP
 
-# Importa as blueprints
 from pages.home import home_bp
 from pages.about import about_bp
+from pages.contacts import contacts_bp
+from pages.login import login_bp
+from pages.newpad import newpad_bp
+from pages.search import search_bp
 
 app = Flask(__name__)
 
-# Injeta as variáveis globalmente, com os valores de `config.APP`
+
 @app.context_processor
 def inject_globals():
     return {
@@ -19,9 +20,13 @@ def inject_globals():
         "app_name": APP["name"],
     }
 
-# Registra as blueprints
+
 app.register_blueprint(home_bp)
 app.register_blueprint(about_bp)
+app.register_blueprint(contacts_bp)
+app.register_blueprint(login_bp)
+app.register_blueprint(newpad_bp)
+app.register_blueprint(search_bp)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
