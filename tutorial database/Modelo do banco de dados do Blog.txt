@@ -1,0 +1,19 @@
+Modelo do banco de dados do Blog Fake
+
+TABELA "users" (prefixo "u_"):
+
+u_id INTEG.ER PRIMARY KEY AUTOINCREMENT
+u_created_at TEXT DEFAULT CURRENT_TIMESTAMP
+u_name TEXT NOT NULL
+u_email TEXT NOT NULL UNIQUE
+u_password TEXT NOT NULL
+
+
+
+TABELA "posts" (prefixo "p_"):
+
+p_id PRIMARY KEY AUTOINCREMENT
+p_created_at TEXT DEFAULT CURRENT_TIMESTAMP
+p_title TEXT NOT NULL,
+p_content TEXT,
+p_owner INTEGER FOREING KEY users(u_id)
