@@ -1,8 +1,9 @@
 # pages\owner.py
 
 import sqlite3
-from flask import Blueprint, make_response, redirect, request, jsonify, url_for
+from flask import Blueprint, g, make_response, redirect, render_template, request, jsonify, url_for
 from config import COOKIE, DB
+from utils.auth import login_required
 
 owner_bp = Blueprint('owner', __name__, url_prefix='/owner')
 
@@ -111,3 +112,16 @@ def owner_logout():
         samesite='Strict'
     )
     return response
+
+@owner_bp.route('/profile')
+@login_required
+def owner_profile():
+
+    userdata = g.current_user
+    page_title = f"Perfil de {userdata['own_display_name']}"
+
+    return render_template(
+        "profile.html",
+        page_title=page_title,
+        userdata=userdata
+    )
