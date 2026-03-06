@@ -31,7 +31,7 @@ const userClickId = 'userInOutLink';
  */
 // const apiLoginEndpoint = 'firebase';
 // const apiLoginEndpoint = '/owner/login'; // Exemplo
-const apiLoginEndpoint = '';
+const apiLoginEndpoint = '/owner/login';
 
 /** 
  * Configuração: rota de logout
@@ -43,7 +43,7 @@ const apiLoginEndpoint = '';
  * - Se vazio (""), não envia os dados para a API/backend;
  */
 // const apiLogoutEndpoint = '/user/logout'; // Exemplo
-const apiLogoutEndpoint = '';
+const apiLogoutEndpoint = '/owner/logout';
 
 /**
  * Configuração: URL / rota da página inicial do aplicativo
@@ -52,7 +52,7 @@ const apiLogoutEndpoint = '';
  */
 // const redirectOnLogout = 'index.html'
 // const redirectOnLogout = '/'
-const redirectOnLogout = '/'
+const redirectOnLogout = '/';
 
 /**
  * Configuração: mostra logs das ações no console
