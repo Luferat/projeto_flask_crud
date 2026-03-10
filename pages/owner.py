@@ -26,7 +26,9 @@ def owner_login():
 
     # Verifica se o usuário já existe na tabela owners (baseado no UID do Firebase)
     cursor.execute(
-        'SELECT own_id FROM owners WHERE own_uid = ?', (data['uid'],))
+        'SELECT own_id FROM owners WHERE own_uid = ?',
+        (data['uid'],)
+    )
     # True → usuário existe; False = usuário não existe
     existing_user = cursor.fetchone()
 
