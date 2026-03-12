@@ -1,9 +1,7 @@
 # pages/delete.py
 
 import sqlite3
-
 from flask import Blueprint, flash, g, redirect, url_for
-
 from config import DB
 from utils.auth import login_required
 
