@@ -5,7 +5,7 @@ from config import APP
 
 from initdb import init_db
 from pages.home import home_bp
-from pages.about import info_bp
+from pages.about import about_bp
 from pages.contacts import contacts_bp
 from pages.login import login_bp
 from pages.newpad import newpad_bp
@@ -30,7 +30,7 @@ def inject_globals():
 
 
 app.register_blueprint(home_bp)
-app.register_blueprint(info_bp)
+app.register_blueprint(about_bp)
 app.register_blueprint(contacts_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(newpad_bp)
