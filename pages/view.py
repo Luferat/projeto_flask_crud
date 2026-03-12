@@ -17,6 +17,7 @@ def view_page(pad_id):
     owner_uid = request.cookies.get('owner_uid')
 
     conn = sqlite3.connect(DB['name'])
+    # Força os resultados das consultas para DICT
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
