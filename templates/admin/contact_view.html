@@ -1,0 +1,76 @@
+{# templates\admin\contact_view.html #}
+
+{% extends "_base.html" %}
+
+{% block content %}
+
+<h2>Gestão de Contato</h2>
+
+<div class="d-flex flex-column flex-md-row">
+
+    <form action="/admin/contact/{{ form.cnt_id }}" method="post" name="contact_form" class="was-validated flex-grow-1">
+
+        <div class="mt-3">
+            <label for="name" class="form-label">Remetente:</label>
+            <input class="form-control" type="text" name="name" id="name" required minlength="2" value="{{ form.cnt_name }}">
+            <div class="valid-feedback">&nbsp;</div>
+            <div class="invalid-feedback">Preencha com seu nome completo.</div>
+        </div>
+
+        <div class="mt-3">
+            <label for="email" class="form-label">E-mail:</label>
+            <input class="form-control" class="form-control" type="email" name="email" id="email" required value="{{ form.cnt_email }}">
+            <div class="valid-feedback">&nbsp;</div>
+            <div class="invalid-feedback">Preencha com seu e-mail principal.</div>
+        </div>
+
+        <div class="mt-3">
+            <label for="subject" class="form-label">Assunto:</label>
+            <input class="form-control" type="text" name="subject" id="subject" required minlength="3" value="{{ form.cnt_subject }}">
+            <div class="valid-feedback">&nbsp;</div>
+            <div class="invalid-feedback">Preencha com o assunto do contato.</div>
+        </div>
+
+        <div class="mt-3">
+            <label for="message" class="form-label">Mensagem:</label>
+            <textarea class="form-control" name="message" id="message" rows="4" required minlength="4">{{ form.cnt_message }}</textarea>
+            <div class="valid-feedback">&nbsp;</div>
+            <div class="invalid-feedback">Escreva a mensagem do contato.</div>
+        </div>
+
+        <div class="d-flex">
+            <div class="me-4">Status:</div>
+            <div class="form-check me-4">
+                <input type="radio" class="form-check-input" id="radio1" name="status" value="Recebido" {% if form.cnt_status=='Recebido' %}checked{% endif %}>
+                <label class="form-check-label" for="radio1">Recebido</label>
+            </div>
+            <div class="form-check me-4">
+                <input type="radio" class="form-check-input" id="radio2" name="status" value="Lido" {% if form.cnt_status=='Lido' %}checked{% endif %}>
+                <label class="form-check-label" for="radio2">Lido</label>
+            </div>
+            <div class="form-check me-4">
+                <input type="radio" class="form-check-input" id="radio3" name="status" value="Respondido" {% if form.cnt_status=='Respondido' %}checked{% endif %}>
+                <label class="form-check-label" for="radio3">Respondido</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="radio4" name="status" value="Apagado" {% if form.cnt_status=='Apagado' %}checked{% endif %}>
+                <label class="form-check-label" for="radio4">Apagado</label>
+                <span class="text-danger" title="ATENÇÃO!" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Contato apagado NÃO pode ser recuperado!"><i class="bi bi-question-circle-fill"></i></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-floppy-fill"></i> Salvar</button>
+
+    </form>
+
+    <aside class="mt-4 mt-md-0 ms-md-4 bg-light py-3 px-3 py-md-4 px-md-4 pb-0">
+
+        <h3><i class="bi bi-plus"></i>Links</h3>
+        <p class="text-nowrap"><a href="/admin/contacts">Todos os contatos</p>
+
+    </aside>
+
+</div>
+
+
+{% endblock %}

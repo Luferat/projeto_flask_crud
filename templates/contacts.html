@@ -21,7 +21,7 @@
 
         <div class="mt-3">
             <label for="email" class="form-label">Seu e-mail:</label>
-            <input class="form-control" class="form-control" type="email" name="email" id="email" required  value="{{ form.email }}">
+            <input class="form-control" class="form-control" type="email" name="email" id="email" required value="{{ form.email }}">
             <div class="valid-feedback">&nbsp;</div>
             <div class="invalid-feedback">Preencha com seu e-mail principal.</div>
         </div>
@@ -44,15 +44,26 @@
 
     </form>
 
-    <aside class="mt-4 mt-md-0 ms-md-4 bg-light py-3 px-3 py-md-4 px-md-4 pb-0">
+    <aside class="mt-4 mt-md-0 ms-md-4 bg-light py-3 px-3 py-md-4 px-md-4 pb-0 d-flex flex-column">
 
-        <h3><i class="bi bi-plus"></i>Contatos</h3>
-        <ul class="list-unstyled lh-lg ps-3">
-            <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-telephone-fill"></i> (21) 3456-7890</a></li>
-            <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-whatsapp"></i> (21) 9988-77665</a></li>
-            <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-envelope-at-fill"></i> support@springpad.com</a></li>
-            <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-linkedin"></i> LinkedIn</a></li>
-        </ul>
+        <div class="flex-grow-1">
+            <h3><i class="bi bi-plus"></i>Contatos</h3>
+            <ul class="list-unstyled lh-lg ps-3">
+                <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-telephone-fill"></i> (21) 3456-7890</a></li>
+                <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-whatsapp"></i> (21) 9988-77665</a></li>
+                <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-envelope-at-fill"></i> support@springpad.com</a></li>
+                <li class="text-nowrap"><a href="javascript:void(0)"><i class="bi bi-linkedin"></i> LinkedIn</a></li>
+            </ul>
+        </div>
+
+        {% if is_admin %}
+        <div>
+            <hr>
+            <div class="text-center mt-4">
+                <a href="/admin/contacts"><i class="bi bi-gear"></i> Gestão de contatos</a>
+            </div>
+        </div>
+        {% endif %}
 
     </aside>
 

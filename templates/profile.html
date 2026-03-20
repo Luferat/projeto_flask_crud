@@ -34,9 +34,9 @@
         <h3>Meus pads</h3>
 
         {% if all_pads %}
-        <ul class="list-unstyled ps-3 mt-3">
+        <ul class="list-unstyled list-group">
             {% for pad in all_pads %}
-            <li class="mb-3 text-nowrap">
+            <li class="text-nowrap list-group-item">
                 {% if pad.pad_is_markdown == 'True' %}
                 <span class="pe-1" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Markdown"><i
                         class="bi bi-markdown-fill"></i></span>

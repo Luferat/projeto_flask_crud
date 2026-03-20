@@ -3,7 +3,7 @@
 import sqlite3
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from config import DB, MAIL
-from utils.auth import get_user_by_uid
+from utils.auth import get_user_by_uid, get_user_is_admin
 from utils.mail import send_contact_email
 
 contacts_bp = Blueprint('contacts', __name__)
@@ -15,6 +15,7 @@ def contacts_page():
     user_uid = request.cookies.get("owner_uid")
     user = get_user_by_uid(user_uid)
     userdata = dict(user) if user else None
+    is_admin = get_user_is_admin(user_uid)
 
     own_name = userdata["own_display_name"] if userdata else ""
     own_email = userdata["own_email"] if userdata else ""
@@ -73,5 +74,6 @@ def contacts_page():
     return render_template(
         "contacts.html",
         form=form,
-        page_title="Faça Contato"
+        page_title="Faça Contato",
+        is_admin=is_admin,
     )

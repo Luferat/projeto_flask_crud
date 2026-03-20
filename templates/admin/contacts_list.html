@@ -1,0 +1,49 @@
+{# templates\admin\contacts_list.html #}
+
+{% extends "_base.html" %}
+
+{% block content %}
+
+<h2>Gestão de Contatos</h2>
+
+<table class="table table-striped mt-4">
+
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Data</th>
+        <th>Nome</th>
+        <th class="text-nowrap">E-mail</th>
+        <th>Assunto</th>
+        <th>Mensagem</th>
+        <th>Status</th>
+    </tr>
+
+    {% if contacts %}
+
+    {% for contact in contacts %}
+
+    <tr>
+        <td><a href="/admin/contact/{{ contact.cnt_id }}"><i class="bi bi-pencil-fill" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="Ver / Editar"></i></a></td>
+        <td>{{ contact.cnt_id }}</td>
+        <td>{{ contact.cnt_created_at | datetime_br }}</td>
+        <td>{{ contact.cnt_name }}</td>
+        <td>{{ contact.cnt_email }}</td>
+        <td data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="{{ contact.cnt_subject }}">{{ contact.cnt_subject | truncate(20) }}</td>
+        <td data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="{{ contact.cnt_message }}">{{ contact.cnt_message | truncate(30) }}</td>
+        <td>{{ contact.cnt_status }}</td>
+    </tr>
+
+    {% endfor %}
+
+    {% else %}
+
+    <tr>
+        <td class="text-center" colspan="7">Não encontramos nenhum contato.</td>
+    </tr>
+
+    {% endif %}
+
+</table>
+
+{% endblock %}
