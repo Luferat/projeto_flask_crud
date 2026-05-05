@@ -33,10 +33,10 @@ MAIL = {
     "port": 587,
 
     # Conta de e-mail do administrador do site
-    "username": "andre@luferat.net",
-    "admin_email": "andre@luferat.net",
+    "username": "voce@gmail.com",
+    "admin_email": "voce@gmail.com",
     
     # Acesse https://myaccount.google.com/apppasswords para gerar a senha de aplicativo abaixo
-    "password": "tpih yewd rlfu xvef",
+    "password": "aaaa bbbb cccc dddd",
 }
  
